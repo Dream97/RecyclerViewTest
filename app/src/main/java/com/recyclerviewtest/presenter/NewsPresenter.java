@@ -43,10 +43,6 @@ public class NewsPresenter implements NewsContract.Presenter {
     @Override
     public void loadPosts() {
         view.showLoading();
-        /**
-         * model表演时间
-         */
-
         model = new Model();
         model.get(Api.GUOKR_ARTICLES, new okhttp3.Callback() {
             @Override
@@ -67,22 +63,10 @@ public class NewsPresenter implements NewsContract.Presenter {
                 view.showResult(list);
             }
         });
-//        model.getSynchronized(context, Api.GUOKR_ARTICLES, new ICallBack() {
-//            @Override
-//            public void result(String result) {
-//                Log.d("打印",result);
-//                News question = gson.fromJson(result, News.class);
-//                for (News.result re : question.getResult()) {
-//                    // list.add(re);
-//                    Log.d("打印标题",re.getTitle());
-//                    list.add(re);
-//                }
-//                view.showResult(list);
-//            }
-//        });
         view.stopLoading();
-
     }
+
+
     @Override
     public void refresh() {
         loadPosts();
